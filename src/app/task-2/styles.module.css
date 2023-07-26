@@ -1,0 +1,149 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+
+.bodyContainer{
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Roboto', sans-serif;
+}
+
+.cardBody{
+  display: flex;
+  max-width: 800px;
+  flex-direction: column;
+  justify-content: space-around;
+  border-radius: 5px;
+}
+
+.firstElement{
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.tagline{
+  font-size: 24rem;
+  font-weight: bold;
+  color: #007FFA;
+  text-align: center;
+}
+
+.mainContent{
+  position:relative;
+  bottom: 80px;
+  font-size: 7.4rem;
+  font-weight: bold;
+  flex-direction: column;
+  align-items: flex-start;
+  color: #1C1C1C;
+}
+
+.secondContent{
+  font-size: 6.4rem;
+}
+
+.secondContent span{
+  font-size: 6rem;
+  letter-spacing: -4px;
+}
+
+.secondElement{
+
+  font-size: 2rem;
+  font-weight: 500;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: center;
+  color: #1C1C1C;
+  line-height: 1.8;
+}
+
+.second_footer_text{
+  font-size: 1.63rem;
+  font-weight: 500;
+  color: #1C1C1C;
+}
+
+.third_footer_text{
+  font-size: 1.38rem;
+  font-weight: 500;
+  color: #1C1C1C;
+}
+
+.fourth_footer_text{
+  font-size: 0.96rem;
+  font-weight: 500;
+  color: #1C1C1C;
+}
+
+.last_footer {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.fifth_footer_text {
+  font-weight: 500;
+  font-size: 0.80rem;
+}
+
+.last_footer span {
+  flex: 1;
+  width: 100%;
+  margin: 0px 0px 0px 8px;
+  height: 8px;
+  background-color: #1C1C1C;
+}
+
+/* Media queries for mobile responsiveness */
+@media (max-width: 768px) {
+  .tagline {
+    font-size: 8rem;
+  }
+
+  .mainContent {
+    font-size: 4.4rem;
+    bottom: 20px;
+    margin-bottom: 20px;
+  }
+
+  .secondContent {
+    font-size: 3.6rem;
+  }
+
+  .secondContent span {
+    font-size: 3.2rem;
+    letter-spacing: -2px;
+  }
+
+  .secondElement{
+
+    font-size: 1rem;
+  }
+
+
+  .second_footer_text {
+    font-size: 0.815rem;
+  }
+
+  .third_footer_text {
+    font-size: 0.69rem;
+  }
+
+  .fourth_footer_text {
+    font-size: 0.48rem;
+  }
+
+  .fifth_footer_text {
+    font-size: 0.38rem;
+  }
+
+  .last_footer span {
+    height: 3px;
+  }
+}
