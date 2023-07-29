@@ -72,7 +72,7 @@ Access: [https://fe-devfolio.vercel.app/task-1](https://fe-devfolio.vercel.app/t
 
 
 #### To-Be Done
-- [ ] API Integreation to react-select to get suggestions (Limit requests to my IP address)
+- [ ] StackExchange API Integreation to react-select to get suggestions **(Limit requests to my IP address)**
 - [ ] Mouse drag with smooth animations
 - [ ] Priority based Saving on DB
 - [ ] Not giving provision for adding same tag name
