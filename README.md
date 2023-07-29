@@ -1,8 +1,46 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# (Frontend Task <> 2586 Labs)
 
-## Getting Started
+My approach towards the tasks were to simply focus on what can i actually do best with - That's why i started with Task 2 and then Task 1. There were many details that I have missed out, and recongized during the information gathering.
 
-First, run the development server:
+It was really fun to do these challengs, and I'm really glad that i have done what i could within a few days.
+
+## Results
+
+### Task 1 - Multi-column sortable list
+
+![](/images/task-1.gif)
+
+### Task 2 - Layout using CSS
+
+![](/images/task-2.gif)
+
+## Tech Stack
+
+**Client:** React, TypeScript, Next.JS 13, styled-components
+**DB:** PocketBase
+
+# Getting Started
+## Run Locally
+
+Clone the project
+
+```bash
+  git clone https://github.com/Dexters-Hub/fe-devfolio.git
+```
+
+Go to the project directory
+
+```bash
+  cd fe-devfolio-main
+```
+
+Install dependencies
+
+```bash
+  npm install
+```
+
+Start the Development Server
 
 ```bash
 npm run dev
@@ -14,21 +52,63 @@ pnpm dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Progress Monitor
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+### Challenge 1
 
-## Learn More
+Font Used: Nunito Sans
 
-To learn more about Next.js, take a look at the following resources:
+Access: [https://fe-devfolio.vercel.app/task-1](https://fe-devfolio.vercel.app/task-1)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+#### Done
+- [x] Deployed at Vercel  [Output](https://fe-devfolio.vercel.app/)
+- [x] Save the user tags using PocketBase - via pockethost.io
+- [x] Display suggestions
+- [x] Created a useTagHook for getting tags from Stack Exchange API
+- [x] Sorting between columns and within inputs
+- [x] Not used any packages whatsoever for DND
+- [x] Help from ChatGPT (Yes for syntax errors and bugs)
+- [x] UI Structure of the project
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
 
-## Deploy on Vercel
+#### To-Be Done
+- [ ] API Integreation to react-select to get suggestions (Limit requests to my IP address)
+- [ ] Mouse drag with smooth animations
+- [ ] Priority based Saving on DB
+- [ ] Not giving provision for adding same tag name
+- [ ] Detailed Interactions - 'Type to Search', next adding input UI
+- [ ] Mobile Responsiveness
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+#### Resources
+- Google Fonts
+- Figma
+- ChatGPT
+- Documentations
+- YouTube
+- Blogs + Articles
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+
+### Challenge 2
+
+Access: [https://fe-devfolio.vercel.app/task-2](https://fe-devfolio.vercel.app/task-2)
+
+#### Done
+- [x] Completed
+- [x] Layout using pure CSS
+- [x] Mobile Responsiveness
+
+Font Used: Roboto
+#### Resources
+- Google Fonts
+- Figma
+
+
+## Deployment
+*Frontend:* [vercel.com](https://vercel.com/docs)
+*Backend:* [pockethost.io](https://pockethost.gitbook.io/manual/)
+## Documentation
+
+- [PocketBase](https://pocketbase.io/docs/)
+- [Styled-Components](https://styled-components.com/docs)
+- [Next.Js](https://nextjs.org/docs)
+
