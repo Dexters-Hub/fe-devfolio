@@ -1,47 +1,67 @@
 export const customStyles = {
-
     dropdownIndicator: () => ({
-        display: 'none',
-        }),
-
-    // if not used the color should light green 73EACC with opacity as 50% and focus blue if active the default color
-    control: (provided: any, state: any) => ({
-        ...provided,
-        padding: '1em',
-        border: '1px solid #73EACC',
-        borderRadius: '4px',
-        boxShadow: 'none',
-        '&:focus': {
+      display: 'none',
+    }),
+  
+    control: (provided: any, state: any) => {
+        const defaultStyles = {
+          ...provided,
+          padding: '1em',
+          border: '1px solid #73EACC',
+          borderRadius: '4px',
+          boxShadow: 'none',
+          '&:focus': {
             border: '1px solid #007aff',
             boxShadow: 'none',
-        },
-        backgroundColor: state.isFocused ? '#fff' : '#73EACC',
-        margin: '0.5em 0',
-        opacity: state.isFocused ? '1' : '1',
-    }),
-
-    // change color of text and background of the input field
-
+          },
+          backgroundColor: state.isFocused ? '#fff' : state.hasValue ? '#73EACC' : '#fff', 
+          margin: '0.5em 0',
+        };
+    
+        const opacityStyles = {
+          opacity: state.isFocused || (!state.selectProps.menuIsOpen && state.hasValue) ? '1' : '0.5',
+        };
+    
+        return {
+          ...defaultStyles,
+          ...opacityStyles,
+        };
+      },
+    
     menu: (provided: any, state: any) => ({
-        ...provided,
-        backgroundColor: '#fff',
-        color: '#7d7d7d',
-        borderRadius: '4px',
+      ...provided,
+      backgroundColor: '#fff',
+      color: '#7d7d7d',
+      borderRadius: '4px',
+      boxShadow: 'none',
+      '&:focus': {
+        border: '1px solid #007aff',
         boxShadow: 'none',
-        '&:focus': {
-            border: '1px solid #007aff',
-            boxShadow: 'none',
-        },
+      },
     }),
-
-    // change color of Placeholder or text color when not active
 
     placeholder: (provided: any, state: any) => ({
-        ...provided,
-        color: state.isFocused ? '#A6A6A6' : '#073E32',
-        opacity: state.isFocused ? '1' : '0.5',
+      ...provided,
+      color: state.isFocused ? '#A6A6A6' : '#073E32',
+      opacity: state.isFocused ? '1' : '1',
     }),
+  
 
-    //margin between the input field
+    singleValue: (provided: any, state: any) => ({
+      ...provided,
+      color: state.isFocused ? '#A6A6A6' : '#073E32',
+      opacity: state.isFocused ? '1' : '1',
+    }),
+  
 
-};
+    option: (provided: any, state: any) => ({
+      ...provided,
+      color: state.isSelected ? '#fff' : '#7d7d7d',
+      backgroundColor: state.isSelected ? '#007aff' : '#fff',
+      '&:hover': {
+        backgroundColor: state.isSelected ? '#007aff' : '#fff',
+        color: state.isSelected ? '#fff' : '#7d7d7d',
+      },
+    }),
+  };
+  

@@ -12,13 +12,6 @@ export const Container = styled.div`
     font-family: 'Nunito Sans', sans-serif;
 `;
 
-export const ListContainer = styled.div`
-
-    justify-content: center;
-    display: flex;
-    margin-top: 3rem;
-`;
-
 export const Card = styled.div`
     display: flex;
     flex-direction: column;
@@ -39,14 +32,6 @@ export const Card = styled.div`
 
 `;
 
-export const BearerColumn = styled.div`
-    display: flex;
-    flex-direction: column;
-    justify-content:flex-start;  
-    border-radius: 5px;
-    margin: 0.5em;
-    width: 32rem;
-`;
 
 
 export const InnerCard = styled.div`
