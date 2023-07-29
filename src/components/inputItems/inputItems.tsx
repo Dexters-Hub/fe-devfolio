@@ -1,8 +1,10 @@
-
 import React, { useEffect, useState } from 'react';
 import AsyncSelect from 'react-select/async';
 import { customStyles } from './styles';
 
+interface Tag {
+  name: string;
+}
 interface Tag {
   [x: string]: any;
   name: string;
@@ -11,7 +13,7 @@ interface Tag {
 interface InputItemProps {
   preFilledSkills: Tag[];
   onSkillChange: (selectedSkill: Tag | null, position: number) => void;
-  onDeleteSkill: (position: number) => void;
+  onDeleteSkill: (position: number) => void; // Not used here, only used in the parent component
   isDisabled?: boolean;
   position: number;
 }
@@ -22,18 +24,20 @@ const InputItem: React.FC<InputItemProps> = ({ preFilledSkills, position, onSkil
   const [showIcon, setShowIcon] = useState(true);
   const [isSaving, setIsSaving] = useState(false);
   const [isDeleting, setIsDeleting] = useState(false);
+
   const tags: Tag[] = [
-    { name: 'JavaScript' },
-    { name: 'TypeScript' },
     { name: 'React' },
     { name: 'Vue' },
     { name: 'Angular' },
     { name: 'Node' },
     { name: 'Express' },
-    { name: ' Julia' },
-    { name: 'Swift' },
-    { name: 'Objective-C' },
-    { name: 'Java' },
+    { name: 'MongoDB' },
+    { name: 'PostgreSQL' },
+    { name: 'MySQL' },
+    { name: 'Docker' },
+    { name: 'Kubernetes' },
+    { name: 'AWS' },
+
   ];
 
   useEffect(() => {
@@ -44,19 +48,17 @@ const InputItem: React.FC<InputItemProps> = ({ preFilledSkills, position, onSkil
   }, [selectedSkill]);
 
   useEffect(() => {
-    setSelectedSkill(preFilledSkills.length > 0 ? preFilledSkills[0] : null);
+    const firstNonEmptySkill = preFilledSkills.find(skill => skill.name !== '');
+    setSelectedSkill(firstNonEmptySkill || null);
   }, [preFilledSkills]);
 
   const handleSkillChange = (selectedOption: Tag | null) => {
     if (selectedOption) {
       setSelectedSkill(selectedOption);
       saveToDatabase(selectedOption.name);
-
       onSkillChange(selectedOption, position);
     }
   };
-
-  
 
   const filterTag = (inputValue: string) => {
     return availableTags.filter((tag) =>
@@ -72,10 +74,8 @@ const InputItem: React.FC<InputItemProps> = ({ preFilledSkills, position, onSkil
   };
 
   const saveToDatabase = (skillName: string) => {
-    setIsSaving(true); 
-  
+    setIsSaving(true);
     const apiUrl = 'https://be-devfolio.pockethost.io/api/collections/skills/records';
-  
     fetch(apiUrl, {
       method: 'POST',
       headers: {
@@ -88,21 +88,19 @@ const InputItem: React.FC<InputItemProps> = ({ preFilledSkills, position, onSkil
       .then((response) => response.json())
       .then((data) => {
         console.log('Skill saved to database:', data);
-
         setIsSaving(false);
       })
       .catch((error) => {
         console.error('Error saving skill to database:', error);
-        setIsSaving(false); 
+        setIsSaving(false);
       });
   };
-  
+
   const deleteFromDatabase = (id: number) => {
     setIsDeleting(true);
-  
     const apiUrl = `https://be-devfolio.pockethost.io/api/collections/skills/records/${id}`;
-  
     fetch(apiUrl, {
+      cache: 'no-store',
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',
@@ -111,31 +109,44 @@ const InputItem: React.FC<InputItemProps> = ({ preFilledSkills, position, onSkil
       .then((response) => response.json())
       .then(() => {
         console.log('Skill deleted from database');
-        setSelectedSkill(null); 
-        setIsDeleting(false); 
+        setSelectedSkill(null);
+        setIsDeleting(false);
       })
       .catch((error) => {
         console.error('Error deleting skill from database:', error);
         setIsDeleting(false);
       });
+
+    return Promise.resolve();
   };
 
   const deleteSkill = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     event.stopPropagation();
     const id = selectedSkill?.id;
-    deleteFromDatabase(id);
-    onDeleteSkill(position);
-    setSelectedSkill(null);
-    onSkillChange(null, position);
-    setShowIcon(false);
+    deleteFromDatabase(id)
+      .then(() => {
+
+        onSkillChange(null, position);
+        setShowIcon(false);
+        setAvailableTags((prevTags) =>
+          prevTags.filter((tag) => tag.name !== selectedSkill?.name)
+        );
+        setSelectedSkill(null);
+      })
+      .catch((error) => {
+        console.error('Error deleting skill:', error);
+      });
   };
-  
+
+  const itemKey = selectedSkill ? `${position}.${selectedSkill.name}` : `${position}.empty`;
+
+
   return (
-    <div style={{ position: 'relative' }}>
+    <div key={itemKey} style={{ position: 'relative' }}>
       {selectedSkill && (
         <div
           style={{
-            zIndex: 1,
+            zIndex: 2,
             position: 'absolute',
             left: 'calc(100% - 50px)',
             top: '35%',
@@ -164,7 +175,7 @@ const InputItem: React.FC<InputItemProps> = ({ preFilledSkills, position, onSkil
         </div>
       )}
       <AsyncSelect
-        value={selectedSkill ? { name: `${position}. ${selectedSkill.name}` } : null }
+        value={selectedSkill ? { name: `${position}. ${selectedSkill.name}` } : null}
         onChange={handleSkillChange}
         loadOptions={loadOptions}
         defaultOptions={availableTags}
@@ -172,7 +183,7 @@ const InputItem: React.FC<InputItemProps> = ({ preFilledSkills, position, onSkil
         getOptionValue={(option) => option?.name || ''}
         placeholder={`${position}. Add Skill`}
         styles={customStyles}
-        isDisabled={selectedSkill?.name ? true : isDisabled}
+        isDisabled={selectedSkill !== null || isDisabled}
         components={{
           IndicatorSeparator: () => null,
         }}

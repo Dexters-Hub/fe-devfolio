@@ -27,6 +27,8 @@ const DNDPage = () => {
           };
         });
         setPreFilledSkills(skills);
+
+        console.log('Pre-filled skills fetched:', skills);
       })
       .catch((error) => {
         console.error('Error fetching pre-filled skills:', error);

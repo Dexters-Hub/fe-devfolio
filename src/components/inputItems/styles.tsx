@@ -6,6 +6,7 @@ export const customStyles = {
     control: (provided: any, state: any) => {
         const defaultStyles = {
           ...provided,
+          
           padding: '1em',
           border: '1px solid #73EACC',
           borderRadius: '4px',
@@ -16,10 +17,11 @@ export const customStyles = {
           },
           backgroundColor: state.isFocused ? '#fff' : state.hasValue ? '#73EACC' : '#fff', 
           margin: '0.5em 0',
+          
         };
     
         const opacityStyles = {
-          opacity: state.isFocused || (!state.selectProps.menuIsOpen && state.hasValue) ? '1' : '0.5',
+          opacity: state.isFocused || (!state.selectProps.menuIsOpen && state.hasValue) ? '1' : '1',
         };
     
         return {
@@ -56,6 +58,7 @@ export const customStyles = {
 
     option: (provided: any, state: any) => ({
       ...provided,
+      cursor: 'pointer',
       color: state.isSelected ? '#fff' : '#7d7d7d',
       backgroundColor: state.isSelected ? '#007aff' : '#fff',
       '&:hover': {
